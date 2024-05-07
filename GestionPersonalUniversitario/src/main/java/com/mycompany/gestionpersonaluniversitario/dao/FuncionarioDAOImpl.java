@@ -19,9 +19,9 @@ import java.util.List;
 public class FuncionarioDAOImpl implements FuncionarioDAO {
 
     // URL de conexión para PostgreSQL
-    private static final String URL = "jdbc:postgresql://localhost:5432/nombre_base_de_datos";
-    private static final String USER = "usuario";
-    private static final String PASSWORD = "contraseña";
+    private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
+    private static final String USER = "postgres";
+    private static final String PASSWORD = "root";
 
     // Sentencias SQL para las operaciones CRUD
     private static final String INSERT_FUNCIONARIO = "INSERT INTO funcionarios (...) VALUES (...)";
@@ -129,17 +129,17 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
             ResultSet rs = stmt.executeQuery();
             // Procesamos el resultado y construimos la lista de Funcionarios
             while (rs.next()) {
-                // Construimos cada objeto Funcionario a partir de los datos del ResultSet y los agregamos a la lista
+            // Construimos cada objeto Funcionario a partir de los datos del ResultSet y los agregamos a la lista
             Funcionario funcionario = new Funcionario();
-            funcionario.setTipoIdentificacion(rs.getString("tipo_identificacion"));
-            funcionario.setNumeroIdentificacion(rs.getInt("numero_identificacion"));
+            funcionario.setTipoIdentificacion(rs.getString("tipoidentificacion"));
+            funcionario.setNumeroIdentificacion(rs.getInt("funcionarioid"));
             funcionario.setNombres(rs.getString("nombres"));
             funcionario.setApellidos(rs.getString("apellidos"));
-            funcionario.setEstadoCivil(rs.getString("estado_civil"));
+            funcionario.setEstadoCivil(rs.getString("estadocivil"));
             funcionario.setSexo(rs.getString("sexo"));
             funcionario.setDireccion(rs.getString("direccion"));
             funcionario.setTelefono(rs.getString("telefono"));
-            funcionario.setFechaNacimiento(rs.getString("fecha_nacimiento"));
+            funcionario.setFechaNacimiento(rs.getString("fechanacimiento"));
             // Agregar el funcionario a la lista
             funcionarios.add(funcionario);
             }
