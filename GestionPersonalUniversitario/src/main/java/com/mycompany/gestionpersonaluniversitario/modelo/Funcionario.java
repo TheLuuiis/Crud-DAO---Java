@@ -22,10 +22,7 @@ public class Funcionario {
     private List<GrupoFamiliar> grupoFamiliar;
     private InformacionAcademica informacionAcademica;
 
-    
-public Funcionario(String tipoIdentificacion, int numeroIdentificacion, String nombres, String apellidos,
-        String estadoCivil, String sexo, String direccion, String telefono, String fechaNacimiento,
-        List<GrupoFamiliar> grupoFamiliar, InformacionAcademica informacionAcademica) {
+    public Funcionario(String tipoIdentificacion, int numeroIdentificacion, String nombres, String apellidos, String estadoCivil, String sexo, String direccion, String telefono, String fechaNacimiento, List<GrupoFamiliar> grupoFamiliar, InformacionAcademica informacionAcademica) {
         this.tipoIdentificacion = tipoIdentificacion;
         this.numeroIdentificacion = numeroIdentificacion;
         this.nombres = nombres;
@@ -37,6 +34,10 @@ public Funcionario(String tipoIdentificacion, int numeroIdentificacion, String n
         this.fechaNacimiento = fechaNacimiento;
         this.grupoFamiliar = grupoFamiliar;
         this.informacionAcademica = informacionAcademica;
+    }
+
+    public Funcionario() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     // Getters y setters
