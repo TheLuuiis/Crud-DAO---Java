@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class Funcionario {
     private String tipoIdentificacion;
-    private String numeroIdentificacion;
+    private int numeroIdentificacion;
     private String nombres;
     private String apellidos;
     private String estadoCivil;
@@ -23,7 +23,7 @@ public class Funcionario {
     private InformacionAcademica informacionAcademica;
 
     
-public Funcionario(String tipoIdentificacion, String numeroIdentificacion, String nombres, String apellidos,
+public Funcionario(String tipoIdentificacion, int numeroIdentificacion, String nombres, String apellidos,
         String estadoCivil, String sexo, String direccion, String telefono, String fechaNacimiento,
         List<GrupoFamiliar> grupoFamiliar, InformacionAcademica informacionAcademica) {
         this.tipoIdentificacion = tipoIdentificacion;
@@ -48,11 +48,11 @@ public Funcionario(String tipoIdentificacion, String numeroIdentificacion, Strin
         this.tipoIdentificacion = tipoIdentificacion;
     }
 
-    public String getNumeroIdentificacion() {
+    public int getNumeroIdentificacion() {
         return numeroIdentificacion;
     }
 
-    public void setNumeroIdentificacion(String numeroIdentificacion) {
+    public void setNumeroIdentificacion(int numeroIdentificacion) {
         this.numeroIdentificacion = numeroIdentificacion;
     }
 

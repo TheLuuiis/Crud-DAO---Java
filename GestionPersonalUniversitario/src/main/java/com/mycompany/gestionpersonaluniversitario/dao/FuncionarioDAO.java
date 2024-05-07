@@ -4,10 +4,16 @@
  */
 package com.mycompany.gestionpersonaluniversitario.dao;
 
+import com.mycompany.gestionpersonaluniversitario.modelo.Funcionario;
+import java.util.List;
 /**
- *
+ *<>
  * @author USUARIO
  */
 public interface FuncionarioDAO {
-    
+    void agregarFuncionario(Funcionario funcionario);
+    void actualizarFuncionario(Funcionario funcionario);
+    void eliminarFuncionario(int numeroIdentificacion);
+    Funcionario obtenerFuncionario(int numeroIdentificacion);
+    List<Funcionario> listarFuncionarios();
 }

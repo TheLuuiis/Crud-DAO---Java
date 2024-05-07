@@ -4,10 +4,17 @@
  */
 package com.mycompany.gestionpersonaluniversitario.dao;
 
+import com.mycompany.gestionpersonaluniversitario.modelo.InformacionAcademica;
+import java.util.List;
+
 /**
- *
+ *<>
  * @author USUARIO
  */
-public class InformacionAcademicaDAO {
-    
-}
+public interface InformacionAcademicaDAO {
+    void agregarInformacionAcademica(InformacionAcademica informacionAcademica);
+    void acttualizarInformacionAcademica(InformacionAcademica informacionAcademica);
+    void eliminarInformacionAcademica(int funcinarioId);
+    InformacionAcademica obtenerInformacionAcadeica(int funcionarioId);
+    List<InformacionAcademica> listarInformacionAcademica();
+} 
