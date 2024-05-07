@@ -12,8 +12,9 @@ public class GestionPersonalException extends RuntimeException {
     public GestionPersonalException(String mensaje) {
         super(mensaje);
     }
-    
-    public GestionPersonalException(String mensaje, ExcepcionCausante causa) {
-        super(mensaje, causa);
-    };
+    /**
+    * public GestionPersonalException(String mensaje, ExcepcionCausante causa) {
+    *    super(mensaje, causa);
+    * }; 
+    */
 }
