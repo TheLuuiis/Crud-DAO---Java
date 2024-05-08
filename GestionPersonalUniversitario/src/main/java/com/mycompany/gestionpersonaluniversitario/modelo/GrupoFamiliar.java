@@ -24,6 +24,10 @@ public class GrupoFamiliar {
         this.rol = rol;
     }
 
+    public GrupoFamiliar() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
     // Getters
     public int getId() {
         return familiarId;

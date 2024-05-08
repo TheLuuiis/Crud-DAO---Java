@@ -15,7 +15,6 @@ public class InformacionAcademica {
     private String titulo;
     
     // Constructor
-
     public InformacionAcademica(int funcinarioId, String universidad, String nivelEstudio, String titulo) {
         this.funcinarioId = funcinarioId;
         this.universidad = universidad;
@@ -56,4 +55,8 @@ public class InformacionAcademica {
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }   
+
+    public int getFuncionarioId() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

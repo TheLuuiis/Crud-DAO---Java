@@ -16,4 +16,6 @@ public interface GrupoFamiliarDAO {
     void eliminarGrupoFamiliar(int familiarId);
     GrupoFamiliar obtenerGrupoFamiliar(int familiarId);
     List<GrupoFamiliar>listarGruposFamiliares();
+
+    public List<GrupoFamiliar> listarGruposFamiliares(int funcionarioId);
 }
