@@ -11,4 +11,15 @@
         <maven.compiler.target>17</maven.compiler.target>
         <exec.mainClass>com.mycompany.gestionpersonaluniversitario.GestionPersonalUniversitario</exec.mainClass>
     </properties>
+    <dependencies>
+        <!-- lista de dependencias del proyecto -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.5.0</version>
+        </dependency>
+    </dependencies>
+
+
+
 </project>

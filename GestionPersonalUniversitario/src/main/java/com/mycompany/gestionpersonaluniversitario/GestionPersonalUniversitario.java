@@ -3,6 +3,10 @@
  */
 
 package com.mycompany.gestionpersonaluniversitario;
+import com.mycompany.gestionpersonaluniversitario.dao.FuncionarioDAO;
+import com.mycompany.gestionpersonaluniversitario.modelo.Funcionario;
+import com.mycompany.gestionpersonaluniversitario.dao.FuncionarioDAOImpl;
+import java.util.List;
 
 /**
  *
@@ -12,5 +16,8 @@ public class GestionPersonalUniversitario {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
+        FuncionarioDAO funcionario = new FuncionarioDAOImpl();
+        List<Funcionario> lista = funcionario.listarFuncionarios();
+        System.out.println(lista);
     }
 }

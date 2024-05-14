@@ -5,11 +5,13 @@
 package com.mycompany.gestionpersonaluniversitario.modelo;
 
 import java.util.List;
+
 /**
  *
  * @author USUARIO
  */
 public class Funcionario {
+
     private String tipoIdentificacion;
     private int numeroIdentificacion;
     private String nombres;
@@ -37,7 +39,7 @@ public class Funcionario {
     }
 
     public Funcionario() {
-        throw new UnsupportedOperationException("Not supported yet.");
+
     }
 
     // Getters y setters
@@ -127,5 +129,20 @@ public class Funcionario {
 
     public void setInformacionAcademica(InformacionAcademica informacionAcademica) {
         this.informacionAcademica = informacionAcademica;
+    }
+
+    @Override
+    public String toString() {
+        return "Persona{"
+                + "tipoIdentificacion='" + tipoIdentificacion + '\''
+                + ", numeroIdentificacion=" + numeroIdentificacion
+                + ", nombres='" + nombres + '\''
+                + ", apellidos='" + apellidos + '\''
+                + ", estadoCivil='" + estadoCivil + '\''
+                + ", sexo='" + sexo + '\''
+                + ", direccion='" + direccion + '\''
+                + ", telefono='" + telefono + '\''
+                + ", fechaNacimiento='" + fechaNacimiento + '\''
+                + '}';
     }
 }
