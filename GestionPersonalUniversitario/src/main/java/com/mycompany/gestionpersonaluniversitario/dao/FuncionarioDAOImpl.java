@@ -24,7 +24,8 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
     private static final String PASSWORD = "root";
 
     // Sentencias SQL para las operaciones CRUD
-    private static final String INSERT_FUNCIONARIO = "INSERT INTO funcionarios (...) VALUES (...)";
+    private static final String INSERT_FUNCIONARIO = "INSERT INTO funcionarios (FuncionarioID, TipoIdentificacion, Nombres, Apellidos, EstadoCivil, Sexo, Direccion, Telefono, FechaNacimiento) VALUES\n" +
+"(?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String UPDATE_FUNCIONARIO = "UPDATE funcionarios SET ... WHERE id = ?";
     private static final String DELETE_FUNCIONARIO = "DELETE FROM funcionarios WHERE id = ?";
     private static final String SELECT_FUNCIONARIO_BY_ID = "SELECT * FROM funcionarios WHERE id = ?";
@@ -35,8 +36,8 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement stmt = conn.prepareStatement(INSERT_FUNCIONARIO)) {
             // Configuramos los parámetros del PreparedStatement con los valores del funcionario
-            stmt.setString(1, funcionario.getTipoIdentificacion());
-            stmt.setInt(2, funcionario.getNumeroIdentificacion());
+            stmt.setInt(1, funcionario.getNumeroIdentificacion());
+            stmt.setString(2, funcionario.getTipoIdentificacion());
             stmt.setString(3, funcionario.getNombres());
             stmt.setString(4, funcionario.getApellidos());
             stmt.setString(5, funcionario.getEstadoCivil());
@@ -58,15 +59,15 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement stmt = conn.prepareStatement(UPDATE_FUNCIONARIO)) {
             // Configuramos los parámetros del PreparedStatement con los valores actualizados del funcionario
-            stmt.setString(1, funcionario.getTipoIdentificacion());
-            stmt.setInt(2, funcionario.getNumeroIdentificacion());
-            stmt.setString(3, funcionario.getNombres());
-            stmt.setString(4, funcionario.getApellidos());
-            stmt.setString(5, funcionario.getEstadoCivil());
-            stmt.setString(6, funcionario.getSexo());
-            stmt.setString(7, funcionario.getDireccion());
-            stmt.setString(8, funcionario.getTelefono());
-            stmt.setString(9, funcionario.getFechaNacimiento());
+            stmt.setString(0, funcionario.getTipoIdentificacion());
+            stmt.setInt(1, funcionario.getNumeroIdentificacion());
+            stmt.setString(2, funcionario.getNombres());
+            stmt.setString(3, funcionario.getApellidos());
+            stmt.setString(4, funcionario.getEstadoCivil());
+            stmt.setString(5, funcionario.getSexo());
+            stmt.setString(6, funcionario.getDireccion());
+            stmt.setString(7, funcionario.getTelefono());
+            stmt.setString(8, funcionario.getFechaNacimiento());
 
             // Ejecutamos la consulta
             stmt.executeUpdate();

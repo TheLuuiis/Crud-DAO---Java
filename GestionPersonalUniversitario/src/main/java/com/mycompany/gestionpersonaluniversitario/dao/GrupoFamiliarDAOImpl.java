@@ -20,9 +20,9 @@ import java.util.List;
 
 public abstract class GrupoFamiliarDAOImpl implements GrupoFamiliarDAO {
 
-    private static final String URL = "jdbc:postgresql://localhost:5432/nombre_base_de_datos";
-    private static final String USER = "usuario";
-    private static final String PASSWORD = "contraseña";
+    private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
+    private static final String USER = "postgres";
+    private static final String PASSWORD = "root";
     
     private static final String INSERT_GRUPO_FAMILIAR = "INSERT INTO grupo_familiar (funcionario_id, nombre, apellido, rol) VALUES (?, ?, ?, ?)";
     private static final String SELECT_GRUPO_FAMILIAR_BY_ID = "SELECT * FROM grupo_familiar WHERE familiar_id = ?";
