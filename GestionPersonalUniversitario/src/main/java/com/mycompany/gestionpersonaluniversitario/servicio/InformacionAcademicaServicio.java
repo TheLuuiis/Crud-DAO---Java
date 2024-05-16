@@ -23,36 +23,42 @@ public class InformacionAcademicaServicio {
         this.informacionAcademicaDAO = new InformacionAcademicaDAOImpl() {
             @Override
             public void acttualizarInformacionAcademica(InformacionAcademica informacionAcademica) {
-                throw new UnsupportedOperationException("Not supported yet."); 
+                throw new UnsupportedOperationException("Aún no es compatible.");
             }
 
             @Override
             public void eliminarInformacionAcademica(int funcinarioId) {
-                throw new UnsupportedOperationException("Not supported yet."); 
+                throw new UnsupportedOperationException("Aún no es compatible."); 
             }
 
             @Override
             public InformacionAcademica obtenerInformacionAcadeica(int funcionarioId) {
-                throw new UnsupportedOperationException("Not supported yet."); 
+                throw new UnsupportedOperationException("Aún no es compatible."); 
             }
+
             @Override
             public List<InformacionAcademica> listarInformacionAcademica(int funcionarioId) {
-                throw new UnsupportedOperationException("Not supported yet.");
+                throw new UnsupportedOperationException("Aún no es compatible."); 
             }
         }; 
     }
 
-    public void agregarInformacionAcademica(InformacionAcademica infoAcademica) throws GestionPersonalException {
+    public void agregarInformacionAcademica(InformacionAcademica informacionAcademica) throws GestionPersonalException {
+        if (informacionAcademica == null || informacionAcademica.getUniversidad() == null) {
+            throw new GestionPersonalException("La información académica es nula o tiene datos incompletos");
+        }
+        
         try {
-            informacionAcademicaDAO.agregarInformacionAcademica(infoAcademica);
+            informacionAcademicaDAO.agregarInformacionAcademica(informacionAcademica);
         } catch (GestionPersonalException ex) {
             throw new GestionPersonalException("Error al agregar la información académica", ex);
         }
     }
 
-    public List<InformacionAcademica> listarInformacionAcademica(int funcionarioId) throws GestionPersonalException {
+    public InformacionAcademica[] listarInformacionAcademica() throws GestionPersonalException {
         try {
-            return informacionAcademicaDAO.listarInformacionAcademica(funcionarioId);
+            List<InformacionAcademica> informacionAcademicaList = informacionAcademicaDAO.listarInformacionAcademica();
+            return informacionAcademicaList.toArray(new InformacionAcademica[0]);
         } catch (GestionPersonalException ex) {
             throw new GestionPersonalException("Error al listar la información académica", ex);
         }
@@ -60,19 +66,23 @@ public class InformacionAcademicaServicio {
 
     public InformacionAcademica obtenerInformacionAcademica(int id) throws GestionPersonalException, InformacionAcademicaNoEncontradaException {
         try {
-            InformacionAcademica infoAcademica = informacionAcademicaDAO.obtenerInformacionAcademica(id);
-            if (infoAcademica == null) {
+            InformacionAcademica informacionAcademica = informacionAcademicaDAO.obtenerInformacionAcademica(id);
+            if (informacionAcademica == null) {
                 throw new InformacionAcademicaNoEncontradaException(id);
             }
-            return infoAcademica;
+            return informacionAcademica;
         } catch (GestionPersonalException ex) {
             throw new GestionPersonalException("Error al obtener la información académica", ex);
         }
     }
 
-    public void actualizarInformacionAcademica(InformacionAcademica infoAcademica) throws GestionPersonalException {
+    public void actualizarInformacionAcademica(InformacionAcademica informacionAcademica) throws GestionPersonalException {
+        if (informacionAcademica == null || informacionAcademica.getUniversidad() == null) {
+            throw new GestionPersonalException("La información académica es nula o tiene datos incompletos");
+        }
+        
         try {
-            informacionAcademicaDAO.actualizarInformacionAcademica(infoAcademica);
+            informacionAcademicaDAO.actualizarInformacionAcademica(informacionAcademica);
         } catch (GestionPersonalException ex) {
             throw new GestionPersonalException("Error al actualizar la información académica", ex);
         }

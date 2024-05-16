@@ -23,12 +23,16 @@ public class GrupoFamiliarServicio {
         this.grupoFamiliarDAO = new GrupoFamiliarDAOImpl() {
             @Override
             public List<GrupoFamiliar> listarGruposFamiliares(int funcionarioId) {
-                throw new UnsupportedOperationException("Not supported yet.");
+                throw new UnsupportedOperationException("Aún no es compatible.");
             }
-        };
+        }; 
     }
 
     public void agregarGrupoFamiliar(GrupoFamiliar grupoFamiliar) throws GestionPersonalException {
+        if (grupoFamiliar == null || grupoFamiliar.getNombre() == null) {
+            throw new GestionPersonalException("El grupo familiar es nulo o tiene datos incompletos");
+        }
+        
         try {
             grupoFamiliarDAO.agregarGrupoFamiliar(grupoFamiliar);
         } catch (GestionPersonalException ex) {
@@ -36,9 +40,10 @@ public class GrupoFamiliarServicio {
         }
     }
 
-    public List<GrupoFamiliar> listarGruposFamiliares(int funcionarioId) throws GestionPersonalException {
+    public GrupoFamiliar[] listarGruposFamiliares() throws GestionPersonalException {
         try {
-            return grupoFamiliarDAO.listarGruposFamiliares(funcionarioId);
+            List<GrupoFamiliar> gruposFamiliares = grupoFamiliarDAO.listarGruposFamiliares();
+            return gruposFamiliares.toArray(new GrupoFamiliar[0]);
         } catch (GestionPersonalException ex) {
             throw new GestionPersonalException("Error al listar los grupos familiares", ex);
         }
@@ -57,6 +62,10 @@ public class GrupoFamiliarServicio {
     }
 
     public void actualizarGrupoFamiliar(GrupoFamiliar grupoFamiliar) throws GestionPersonalException {
+        if (grupoFamiliar == null || grupoFamiliar.getNombre() == null) {
+            throw new GestionPersonalException("El grupo familiar es nulo o tiene datos incompletos");
+        }
+        
         try {
             grupoFamiliarDAO.actualizarGrupoFamiliar(grupoFamiliar);
         } catch (GestionPersonalException ex) {
