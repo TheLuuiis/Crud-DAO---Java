@@ -23,9 +23,9 @@ public class GrupoFamiliarServicio {
         this.grupoFamiliarDAO = new GrupoFamiliarDAOImpl() {
             @Override
             public List<GrupoFamiliar> listarGruposFamiliares(int funcionarioId) {
-                throw new UnsupportedOperationException("Not supported yet."); 
+                throw new UnsupportedOperationException("Not supported yet.");
             }
-        }; 
+        };
     }
 
     public void agregarGrupoFamiliar(GrupoFamiliar grupoFamiliar) throws GestionPersonalException {
@@ -44,11 +44,13 @@ public class GrupoFamiliarServicio {
         }
     }
 
-    public GrupoFamiliar obtenerGrupoFamiliar(int id) throws GestionPersonalException {
+    public GrupoFamiliar obtenerGrupoFamiliar(int id) throws GestionPersonalException, GrupoFamiliarNoEncontradoException {
         try {
-            return grupoFamiliarDAO.obtenerGrupoFamiliar(id);
-        } catch (GrupoFamiliarNoEncontradoException ex) {
-            throw new GrupoFamiliarNoEncontradoException(id);
+            GrupoFamiliar grupoFamiliar = grupoFamiliarDAO.obtenerGrupoFamiliar(id);
+            if (grupoFamiliar == null) {
+                throw new GrupoFamiliarNoEncontradoException(id);
+            }
+            return grupoFamiliar;
         } catch (GestionPersonalException ex) {
             throw new GestionPersonalException("Error al obtener el grupo familiar", ex);
         }

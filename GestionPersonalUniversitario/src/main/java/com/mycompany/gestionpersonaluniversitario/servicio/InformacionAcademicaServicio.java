@@ -35,7 +35,6 @@ public class InformacionAcademicaServicio {
             public InformacionAcademica obtenerInformacionAcadeica(int funcionarioId) {
                 throw new UnsupportedOperationException("Not supported yet."); 
             }
-
             @Override
             public List<InformacionAcademica> listarInformacionAcademica(int funcionarioId) {
                 throw new UnsupportedOperationException("Not supported yet.");

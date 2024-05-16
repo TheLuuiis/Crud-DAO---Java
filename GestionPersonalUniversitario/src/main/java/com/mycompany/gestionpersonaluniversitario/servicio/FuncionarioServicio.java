@@ -18,7 +18,7 @@ public class FuncionarioServicio {
     private FuncionarioDAO funcionarioDAO;
 
     public FuncionarioServicio() {
-        this.funcionarioDAO = new FuncionarioDAOImpl();
+        this.funcionarioDAO = new FuncionarioDAOImpl(); 
     }
 
     public void agregarFuncionario(Funcionario funcionario) throws GestionPersonalException {
@@ -29,19 +29,22 @@ public class FuncionarioServicio {
         }
     }
 
-    public List<Funcionario> listarFuncionarios() throws GestionPersonalException {
+    public Funcionario[] listarFuncionarios() throws GestionPersonalException {
         try {
-            return funcionarioDAO.listarFuncionarios();
+            List<Funcionario> funcionarios = funcionarioDAO.listarFuncionarios();
+            return funcionarios.toArray(new Funcionario[0]);
         } catch (GestionPersonalException ex) {
             throw new GestionPersonalException("Error al listar los funcionarios", ex);
         }
     }
 
-    public Funcionario obtenerFuncionario(int id) throws GestionPersonalException {
+    public Funcionario obtenerFuncionario(int id) throws GestionPersonalException, FuncionarioNoEncontradoException {
         try {
-            return funcionarioDAO.obtenerFuncionario(id);
-        } catch (FuncionarioNoEncontradoException ex) {
-            throw new FuncionarioNoEncontradoException(id);
+            Funcionario funcionario = funcionarioDAO.obtenerFuncionario(id);
+            if (funcionario == null) {
+                throw new FuncionarioNoEncontradoException(id);
+            }
+            return funcionario;
         } catch (GestionPersonalException ex) {
             throw new GestionPersonalException("Error al obtener el funcionario", ex);
         }
