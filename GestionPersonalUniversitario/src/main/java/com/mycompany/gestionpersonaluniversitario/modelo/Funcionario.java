@@ -145,4 +145,8 @@ public class Funcionario {
                 + ", fechaNacimiento='" + fechaNacimiento + '\''
                 + '}';
     }
+
+    public Object getNombre() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
