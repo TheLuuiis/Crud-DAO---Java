@@ -22,10 +22,6 @@ public class FuncionarioServicio {
     }
 
     public void agregarFuncionario(Funcionario funcionario) throws GestionPersonalException {
-        if (funcionario == null || funcionario.getNombre() == null) {
-            throw new GestionPersonalException("El funcionario es nulo o tiene datos incompletos");
-        }
-        
         try {
             funcionarioDAO.agregarFuncionario(funcionario);
         } catch (GestionPersonalException ex) {
@@ -55,10 +51,7 @@ public class FuncionarioServicio {
     }
 
     public void actualizarFuncionario(Funcionario funcionario) throws GestionPersonalException {
-        if (funcionario == null || funcionario.getNombre() == null) {
-            throw new GestionPersonalException("El funcionario es nulo o tiene datos incompletos");
-        }
-        
+
         try {
             funcionarioDAO.actualizarFuncionario(funcionario);
         } catch (GestionPersonalException ex) {

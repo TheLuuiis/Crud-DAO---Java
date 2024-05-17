@@ -68,7 +68,6 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
             stmt.setString(6, funcionario.getDireccion());
             stmt.setString(7, funcionario.getTelefono());
             stmt.setString(8, funcionario.getFechaNacimiento());
-
             // Ejecutamos la consulta
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -148,6 +147,7 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
             // Aqui lanzamos una excepción personalizada con un mensaje de error
             throw new GestionPersonalException("Error al listar los funcionarios", e);
         }
+        
         return funcionarios;
     }
 }

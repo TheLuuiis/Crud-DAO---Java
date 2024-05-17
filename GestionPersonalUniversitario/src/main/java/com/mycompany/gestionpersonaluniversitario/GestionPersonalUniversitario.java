@@ -48,6 +48,8 @@ public class GestionPersonalUniversitario {
         
         String telefono = scan.nextLine();
         funcionario.setTelefono(telefono);
+        
+        System.out.println(funcionario);
         funcionarioDao.agregarFuncionario(funcionario);
         
         

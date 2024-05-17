@@ -4,10 +4,10 @@
  */
 package com.mycompany.gestionpersonaluniversitario.interfaz;
 
+
 import com.mycompany.gestionpersonaluniversitario.dao.FuncionarioDAO;
 import com.mycompany.gestionpersonaluniversitario.dao.FuncionarioDAOImpl;
 import com.mycompany.gestionpersonaluniversitario.modelo.Funcionario;
-import java.util.List;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
@@ -167,10 +167,14 @@ public class GestionPersonal extends javax.swing.JFrame {
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
         // TODO add your handling code here:
         DefaultTableModel modelo = (DefaultTableModel)tablaFuncionarios.getModel();
-        System.out.println("Listando Funcionarios");
+        Vector<Funcionario> vector = new Vector<>();
         FuncionarioDAO funcionarioDao = new FuncionarioDAOImpl();
-        List<Funcionario> lista = funcionarioDao.listarFuncionarios();
         
+        for(Funcionario funcionario:funcionarioDao.listarFuncionarios()){
+            modelo.addRow(new Object[]{funcionario.getNumeroIdentificacion(), funcionario.getTipoIdentificacion(), funcionario.getNombres(), funcionario.getApellidos(), funcionario.getEstadoCivil(), funcionario.getSexo(), funcionario.getDireccion(), funcionario.getTelefono(), funcionario.getFechaNacimiento()});
+            
+        }
+        modelo.addRow(vector);
         
     }//GEN-LAST:event_agregarActionPerformed
 

@@ -146,7 +146,4 @@ public class Funcionario {
                 + '}';
     }
 
-    public Object getNombre() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }
