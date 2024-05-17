@@ -28,7 +28,7 @@ public class GestionPersonalUniversitario {
         String tipoIdentificacion = scan.nextLine();
         funcionario.setTipoIdentificacion(tipoIdentificacion);
         
-        int id = scan.nextInt();
+        int id = Integer.parseInt (scan.nextLine());
         funcionario.setNumeroIdentificacion(id);
         
         String nombres = scan.nextLine();
