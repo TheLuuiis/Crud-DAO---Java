@@ -6,6 +6,7 @@ package com.mycompany.gestionpersonaluniversitario;
 import com.mycompany.gestionpersonaluniversitario.dao.FuncionarioDAO;
 import com.mycompany.gestionpersonaluniversitario.modelo.Funcionario;
 import com.mycompany.gestionpersonaluniversitario.dao.FuncionarioDAOImpl;
+import com.mycompany.gestionpersonaluniversitario.interfaz.GestionPersonal;
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,6 +21,10 @@ public class GestionPersonalUniversitario {
         FuncionarioDAO funcionarioDao = new FuncionarioDAOImpl();
         List<Funcionario> lista = funcionarioDao.listarFuncionarios();
         System.out.println(lista);
+        
+        GestionPersonal princ = new GestionPersonal();
+        princ.setVisible(true);
+        princ.setLocationRelativeTo(null);
         
         System.out.println("Creando funcionarios");
         Scanner scan = new Scanner(System.in);
@@ -51,6 +56,7 @@ public class GestionPersonalUniversitario {
         
         System.out.println(funcionario);
         funcionarioDao.agregarFuncionario(funcionario);
+        
         
         
     }

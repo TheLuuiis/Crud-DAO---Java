@@ -183,7 +183,7 @@ public class GestionPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_actualizarActionPerformed
 
     private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_borrarActionPerformed
 
     /**
@@ -213,12 +213,9 @@ public class GestionPersonal extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GestionPersonal().setVisible(true);
-            }
-        });
+       GestionPersonal pantalla = new GestionPersonal();
+       pantalla.setVisible(true);
+       pantalla.setLocationRelativeTo(null);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
