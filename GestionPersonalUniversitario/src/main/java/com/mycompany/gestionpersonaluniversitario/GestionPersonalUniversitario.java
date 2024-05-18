@@ -26,6 +26,7 @@ public class GestionPersonalUniversitario {
         princ.setVisible(true);
         princ.setLocationRelativeTo(null);
         
+        
         System.out.println("Creando funcionarios");
         Scanner scan = new Scanner(System.in);
         Funcionario funcionario = new Funcionario();

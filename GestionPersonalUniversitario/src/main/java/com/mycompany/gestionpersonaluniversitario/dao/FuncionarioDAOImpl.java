@@ -19,9 +19,9 @@ import java.util.List;
 public class FuncionarioDAOImpl implements FuncionarioDAO {
 
     // URL de conexión para PostgreSQL
-    private static final String URL = "jdbc:postgresql://localhost:5000/postgres";
+    private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
     private static final String USER = "postgres";
-    private static final String PASSWORD = "kevinm24";
+    private static final String PASSWORD = "root";
 
     // Sentencias SQL para las operaciones CRUD
     private static final String INSERT_FUNCIONARIO = "INSERT INTO funcionarios (FuncionarioID, TipoIdentificacion, Nombres, Apellidos, EstadoCivil, Sexo, Direccion, Telefono, FechaNacimiento) VALUES\n" +
@@ -81,7 +81,7 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement stmt = conn.prepareStatement(DELETE_FUNCIONARIO)) {
             // Configuramos los parámetros del PreparedStatement con el ID del funcionario a eliminar
-            stmt.setInt(1, id);
+            stmt.setInt(0, id);
 
             // Ejecutamos la consulta
             stmt.executeUpdate();

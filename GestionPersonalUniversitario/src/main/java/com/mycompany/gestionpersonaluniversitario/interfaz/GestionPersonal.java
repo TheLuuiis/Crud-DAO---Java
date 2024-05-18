@@ -41,9 +41,6 @@ public class GestionPersonal extends javax.swing.JFrame {
         agregar = new javax.swing.JButton();
         actualizar = new javax.swing.JButton();
         borrar = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        refrescar = new javax.swing.JToggleButton();
-        jLabel2 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -59,6 +56,11 @@ public class GestionPersonal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 102));
 
@@ -111,44 +113,6 @@ public class GestionPersonal extends javax.swing.JFrame {
             }
         });
 
-        jPanel3.setBackground(new java.awt.Color(0, 102, 102));
-
-        refrescar.setIcon(new javax.swing.ImageIcon("W:\\repos\\Crud-DAO---Java\\GestionPersonalUniversitario\\recursos\\refresh (2).png")); // NOI18N
-        refrescar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refrescarActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("Microsoft PhagsPa", 3, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Refresh");
-        jLabel2.setToolTipText("");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(refrescar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 15, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)))
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(149, Short.MAX_VALUE)
-                .addComponent(refrescar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -160,16 +124,13 @@ public class GestionPersonal extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(actualizar)
-                                .addGap(487, 487, 487)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(borrar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -179,9 +140,7 @@ public class GestionPersonal extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(borrar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,7 +153,7 @@ public class GestionPersonal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,33 +163,31 @@ public class GestionPersonal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
-        CrearDatos crearDatos = new CrearDatos();
-        crearDatos.setVisible(true);
-        crearDatos.setLocationRelativeTo(null);
-
-    }//GEN-LAST:event_agregarActionPerformed
+    private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
+        int getIdentifacion = tablaFuncionarios.getSelectedRow();
+        if (getIdentifacion != -1) {
+            Object idFuncionario = tablaFuncionarios.getValueAt(getIdentifacion, 0);
+            int i = Integer.parseInt(idFuncionario.toString());
+            FuncionarioDAO funcionarioDao = new FuncionarioDAOImpl();
+            funcionarioDao.eliminarFuncionario(i);
+        } else {
+            System.out.println("Error el indice es menor a 1");
+        }
+    }//GEN-LAST:event_borrarActionPerformed
 
     private void actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_actualizarActionPerformed
 
-    private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
+    private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
+        CrearDatos crearDatos = new CrearDatos();
+        crearDatos.setVisible(true);
+        crearDatos.setLocationRelativeTo(null);
+    }//GEN-LAST:event_agregarActionPerformed
 
-    }//GEN-LAST:event_borrarActionPerformed
-
-    private void refrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refrescarActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel modelo = (DefaultTableModel) tablaFuncionarios.getModel();
-        Vector<Funcionario> vector = new Vector<>();
-        FuncionarioDAO funcionarioDao = new FuncionarioDAOImpl();
-
-        for (Funcionario funcionario : funcionarioDao.listarFuncionarios()) {
-            modelo.addRow(new Object[]{funcionario.getNumeroIdentificacion(), funcionario.getTipoIdentificacion(), funcionario.getNombres(), funcionario.getApellidos(), funcionario.getEstadoCivil(), funcionario.getSexo(), funcionario.getDireccion(), funcionario.getTelefono(), funcionario.getFechaNacimiento()});
-
-        }
-        modelo.addRow(vector);
-    }//GEN-LAST:event_refrescarActionPerformed
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        cargarTabla();
+    }//GEN-LAST:event_formWindowOpened
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -238,13 +195,34 @@ public class GestionPersonal extends javax.swing.JFrame {
     private javax.swing.JButton agregar;
     private javax.swing.JButton borrar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JToggleButton refrescar;
     private javax.swing.JTable tablaFuncionarios;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarTabla() {
+        // TODO add your handling code here:
+        DefaultTableModel modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                // Todas las celdas no son editables
+                return false;
+            }
+        };
+
+        // Asegúrate de que las columnas de tu modelo sean las correctas
+        modelo.setColumnIdentifiers(new Object[]{"Número de Identificación", "Tipo de Identificación", "Nombres", "Apellidos", "Estado Civil", "Sexo", "Dirección", "Teléfono", "Fecha de Nacimiento"});
+
+        Vector<Funcionario> vector = new Vector<>();
+        FuncionarioDAO funcionarioDao = new FuncionarioDAOImpl();
+
+        tablaFuncionarios.setModel(modelo);
+        
+        for (Funcionario funcionario : funcionarioDao.listarFuncionarios()) {
+            modelo.addRow(new Object[]{funcionario.getNumeroIdentificacion(), funcionario.getTipoIdentificacion(), funcionario.getNombres(), funcionario.getApellidos(), funcionario.getEstadoCivil(), funcionario.getSexo(), funcionario.getDireccion(), funcionario.getTelefono(), funcionario.getFechaNacimiento()});
+        }
+
+    }
 }
