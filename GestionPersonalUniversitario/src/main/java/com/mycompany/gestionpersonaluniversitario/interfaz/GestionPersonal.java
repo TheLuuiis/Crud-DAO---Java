@@ -164,9 +164,10 @@ public class GestionPersonal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
-        int getIdentifacion = tablaFuncionarios.getSelectedRow();
-        if (getIdentifacion != -1) {
-            Object idFuncionario = tablaFuncionarios.getValueAt(getIdentifacion, 0);
+        int getIdentificacion = tablaFuncionarios.getSelectedRow();
+        System.out.println(getIdentificacion);
+        if (getIdentificacion != -1) {
+            Object idFuncionario = tablaFuncionarios.getValueAt(getIdentificacion, 0);
             int i = Integer.parseInt(idFuncionario.toString());
             FuncionarioDAO funcionarioDao = new FuncionarioDAOImpl();
             funcionarioDao.eliminarFuncionario(i);

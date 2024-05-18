@@ -27,7 +27,7 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
     private static final String INSERT_FUNCIONARIO = "INSERT INTO funcionarios (FuncionarioID, TipoIdentificacion, Nombres, Apellidos, EstadoCivil, Sexo, Direccion, Telefono, FechaNacimiento) VALUES\n" +
 "(?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String UPDATE_FUNCIONARIO = "UPDATE funcionarios SET ... WHERE id = ?";
-    private static final String DELETE_FUNCIONARIO = "DELETE FROM funcionarios WHERE id = ?";
+    private static final String DELETE_FUNCIONARIO = "DELETE FROM funcionarios WHERE funcionarioid = ?";
     private static final String SELECT_FUNCIONARIO_BY_ID = "SELECT * FROM funcionarios WHERE id = ?";
     private static final String SELECT_ALL_FUNCIONARIOS = "SELECT * FROM funcionarios";
 
@@ -81,7 +81,7 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement stmt = conn.prepareStatement(DELETE_FUNCIONARIO)) {
             // Configuramos los parámetros del PreparedStatement con el ID del funcionario a eliminar
-            stmt.setInt(0, id);
+            stmt.setInt(1, id);
 
             // Ejecutamos la consulta
             stmt.executeUpdate();
