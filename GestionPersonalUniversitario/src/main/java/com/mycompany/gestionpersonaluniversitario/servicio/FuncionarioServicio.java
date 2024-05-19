@@ -50,10 +50,10 @@ public class FuncionarioServicio {
         }
     }
 
-    public void actualizarFuncionario(Funcionario funcionario) throws GestionPersonalException {
+    public void actualizarFuncionario(Funcionario funcionario, int id) throws GestionPersonalException {
 
         try {
-            funcionarioDAO.actualizarFuncionario(funcionario);
+            
         } catch (GestionPersonalException ex) {
             throw new GestionPersonalException("Error al actualizar el funcionario", ex);
         }

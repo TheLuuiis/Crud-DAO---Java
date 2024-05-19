@@ -1,15 +1,16 @@
 package com.mycompany.gestionpersonaluniversitario.interfaz;
 
+import com.mycompany.gestionpersonaluniversitario.dao.FuncionarioDAO;
 import com.mycompany.gestionpersonaluniversitario.dao.FuncionarioDAOImpl;
 import com.mycompany.gestionpersonaluniversitario.modelo.Funcionario;
+import javax.swing.JTextField;
 
+public class ActualizarDatos extends javax.swing.JFrame {
 
-public class CrearDatos extends javax.swing.JFrame {
+    FuncionarioDAO funcionarioDao = new FuncionarioDAOImpl();
     
-    FuncionarioDAOImpl funcionarioDAO = new FuncionarioDAOImpl(); 
 
-    
-    public CrearDatos() {
+    public ActualizarDatos() {
         initComponents();
     }
 
@@ -46,12 +47,17 @@ public class CrearDatos extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 102));
 
         jLabel1.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Agregar Funcionario");
+        jLabel1.setText("Actualizar Funcionario");
         jLabel1.setToolTipText("");
 
         guardar.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
@@ -247,13 +253,15 @@ public class CrearDatos extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel1)))
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -291,32 +299,15 @@ public class CrearDatos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tipodeidentificacionCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipodeidentificacionCBActionPerformed
-       
+
     }//GEN-LAST:event_tipodeidentificacionCBActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-         Funcionario funcionario = new Funcionario();                                      
-        String apellidoPerso = apellido.getText();
-        funcionario.setApellidos(apellidoPerso);
-        String Direccion = direccion.getText();
-        funcionario.setDireccion(Direccion);
-        String EstadoCivil = estadoCivil.getText();
-        funcionario.setEstadoCivil(EstadoCivil);
-        String FechaNacimiento = fechaNacimiento.getText();
-        funcionario.setFechaNacimiento(FechaNacimiento);
-        String Identificacion = identificacion.getText();
-        funcionario.setNumeroIdentificacion(Integer.parseInt(Identificacion));
-        String Nombre = nombre.getText();
-        funcionario.setNombres(Nombre);
-        String Sexo = sexo.getText();
-        funcionario.setSexo(Sexo);
-        String Telefono = telefono.getText();
-        funcionario.setTelefono(Telefono);
-        String idTipo = (String) tipodeidentificacionCB.getSelectedItem();
-        funcionario.setTipoIdentificacion(idTipo);
-
-        funcionarioDAO.agregarFuncionario(funcionario);
+        GestionPersonal gestionPersonal = new GestionPersonal();
+        agregadoDatos(gestionPersonal.id);
+        
        
+
     }//GEN-LAST:event_guardarActionPerformed
 
     private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
@@ -331,6 +322,15 @@ public class CrearDatos extends javax.swing.JFrame {
         tipodeidentificacionCB.setSelectedIndex(0);
     }//GEN-LAST:event_limpiarActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        GestionPersonal gestionPersonal = new GestionPersonal();
+        System.out.println(gestionPersonal.id);
+        funcionarioDao.obtenerFuncionario(gestionPersonal.id);
+        
+    }//GEN-LAST:event_formWindowOpened
+    
+        
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellido;
@@ -361,4 +361,28 @@ public class CrearDatos extends javax.swing.JFrame {
     private javax.swing.JTextField telefono;
     private javax.swing.JComboBox<String> tipodeidentificacionCB;
     // End of variables declaration//GEN-END:variables
+
+    private void agregadoDatos(int id) {
+        Funcionario funcionario = new Funcionario();
+        String apellidoPerso = apellido.getText();
+        funcionario.setApellidos(apellidoPerso);
+        String Direccion = direccion.getText();
+        funcionario.setDireccion(Direccion);
+        String EstadoCivil = estadoCivil.getText();
+        funcionario.setEstadoCivil(EstadoCivil);
+        String FechaNacimiento = fechaNacimiento.getText();
+        funcionario.setFechaNacimiento(FechaNacimiento);
+        String Identificacion = identificacion.getText();
+        funcionario.setNumeroIdentificacion(Integer.parseInt(Identificacion));
+        String Nombre = nombre.getText();
+        funcionario.setNombres(Nombre);
+        String Sexo = sexo.getText();
+        funcionario.setSexo(Sexo);
+        String Telefono = telefono.getText();
+        funcionario.setTelefono(Telefono);
+        String idTipo = (String) tipodeidentificacionCB.getSelectedItem();
+        funcionario.setTipoIdentificacion(idTipo);
+
+        funcionarioDao.actualizarFuncionario(funcionario, id);
+    }
 }

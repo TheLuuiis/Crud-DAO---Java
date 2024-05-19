@@ -19,16 +19,16 @@ import java.util.List;
 public class FuncionarioDAOImpl implements FuncionarioDAO {
 
     // URL de conexión para PostgreSQL
-    private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
+    private static final String URL = "jdbc:postgresql://localhost:5000/postgres";
     private static final String USER = "postgres";
-    private static final String PASSWORD = "root";
+    private static final String PASSWORD = "kevinm24";
 
     // Sentencias SQL para las operaciones CRUD
     private static final String INSERT_FUNCIONARIO = "INSERT INTO funcionarios (FuncionarioID, TipoIdentificacion, Nombres, Apellidos, EstadoCivil, Sexo, Direccion, Telefono, FechaNacimiento) VALUES\n" +
 "(?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    private static final String UPDATE_FUNCIONARIO = "UPDATE funcionarios SET ... WHERE id = ?";
+    private static final String UPDATE_FUNCIONARIO = "UPDATE funcionarios SET FuncionarioID = ?, TipoIdentificacion = ?, Nombres = ?, Apellidos = ?, EstadoCivil = ?, Sexo = ?, Direccion = ?, Telefono = ?, FechaNacimiento = ? WHERE funcionarios.funcionarioid = ?";
     private static final String DELETE_FUNCIONARIO = "DELETE FROM funcionarios WHERE funcionarioid = ?";
-    private static final String SELECT_FUNCIONARIO_BY_ID = "SELECT * FROM funcionarios WHERE id = ?";
+    private static final String SELECT_FUNCIONARIO_BY_ID = "SELECT * FROM funcionarios WHERE funcionarioid = ?";
     private static final String SELECT_ALL_FUNCIONARIOS = "SELECT * FROM funcionarios";
 
     @Override
@@ -55,23 +55,25 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
     }
 
     @Override
-    public void actualizarFuncionario(Funcionario funcionario) {
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement(UPDATE_FUNCIONARIO)) {
-            // Configuramos los parámetros del PreparedStatement con los valores actualizados del funcionario
-            stmt.setString(0, funcionario.getTipoIdentificacion());
-            stmt.setInt(1, funcionario.getNumeroIdentificacion());
-            stmt.setString(2, funcionario.getNombres());
-            stmt.setString(3, funcionario.getApellidos());
-            stmt.setString(4, funcionario.getEstadoCivil());
-            stmt.setString(5, funcionario.getSexo());
-            stmt.setString(6, funcionario.getDireccion());
-            stmt.setString(7, funcionario.getTelefono());
-            stmt.setString(8, funcionario.getFechaNacimiento());
-            // Ejecutamos la consulta
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            // lanzamos una excepción personalizada con un mensaje de error descriptivo
+    public void actualizarFuncionario(Funcionario funcionario, int id) {
+    try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+         PreparedStatement stmt = conn.prepareStatement(UPDATE_FUNCIONARIO)) {
+        // Configuramos los parámetros del PreparedStatement con los valores actualizados del funcionario
+        stmt.setInt(1, funcionario.getNumeroIdentificacion());
+        stmt.setString(2, funcionario.getTipoIdentificacion());
+        stmt.setString(3, funcionario.getNombres());
+        stmt.setString(4, funcionario.getApellidos());
+        stmt.setString(5, funcionario.getEstadoCivil());
+        stmt.setString(6, funcionario.getSexo());
+        stmt.setString(7, funcionario.getDireccion());
+        stmt.setString(8, funcionario.getTelefono());
+        stmt.setString(9, funcionario.getFechaNacimiento());
+        stmt.setInt(10, id);  // Usamos el id en la cláusula WHERE
+        // Ejecutamos la consulta
+        stmt.executeUpdate();
+    } catch (SQLException e) {
+        // lanzamos una excepción personalizada con un mensaje de error descriptivo
+
             throw new GestionPersonalException("Error al actualizar el funcionario", e);
         }
     }
@@ -150,4 +152,8 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
         
         return funcionarios;
     }
+
+   
+   
+    
 }

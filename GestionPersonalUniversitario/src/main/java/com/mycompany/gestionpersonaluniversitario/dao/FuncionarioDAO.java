@@ -12,8 +12,10 @@ import java.util.List;
  */
 public interface FuncionarioDAO {
     void agregarFuncionario(Funcionario funcionario);
-    void actualizarFuncionario(Funcionario funcionario);
+    void actualizarFuncionario(Funcionario funcionario, int id);
     void eliminarFuncionario(int numeroIdentificacion);
     Funcionario obtenerFuncionario(int numeroIdentificacion);
     List<Funcionario> listarFuncionarios();
+
+   
 }

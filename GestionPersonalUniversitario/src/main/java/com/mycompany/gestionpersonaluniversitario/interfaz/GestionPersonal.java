@@ -11,7 +11,7 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+     *
  * @author juanj
  */
 public class GestionPersonal extends javax.swing.JFrame {
@@ -22,7 +22,20 @@ public class GestionPersonal extends javax.swing.JFrame {
     public GestionPersonal() {
         initComponents();
     }
+    protected int id;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public GestionPersonal(int id) {
+        this.id = id;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -177,7 +190,18 @@ public class GestionPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_borrarActionPerformed
 
     private void actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarActionPerformed
-        // TODO add your handling code here:
+        ActualizarDatos actualizarDatos = new ActualizarDatos();
+        actualizarDatos.setVisible(true);
+        actualizarDatos.setLocationRelativeTo(null);
+        int getIdentificacion = tablaFuncionarios.getSelectedRow();
+        System.out.println(getIdentificacion);
+        if (getIdentificacion != -1) {
+            Object idFuncionario = tablaFuncionarios.getValueAt(getIdentificacion, 0);
+            int i = Integer.parseInt(idFuncionario.toString());
+            id = i;
+        } else {
+            System.out.println("Error el indice es menor a 1");
+        }
     }//GEN-LAST:event_actualizarActionPerformed
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
@@ -226,4 +250,8 @@ public class GestionPersonal extends javax.swing.JFrame {
         }
 
     }
+        public int getIdentificacion(int id){
+        int identificacion = id; 
+        return identificacion;
+        }
 }

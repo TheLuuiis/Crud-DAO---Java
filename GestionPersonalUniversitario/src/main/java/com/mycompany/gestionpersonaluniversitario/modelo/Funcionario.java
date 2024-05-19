@@ -42,6 +42,10 @@ public class Funcionario {
 
     }
 
+    public Funcionario(Object idFuncionario, String tipoIdentificacion, int numeroIdentificacion, String nombres, String apellidos, String estadoCivil, String sexo, String direccion, String telefono, String fechaNacimiento) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     // Getters y setters
     public String getTipoIdentificacion() {
         return tipoIdentificacion;
