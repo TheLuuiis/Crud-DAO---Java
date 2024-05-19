@@ -184,6 +184,9 @@ public class GestionPersonal extends javax.swing.JFrame {
             int i = Integer.parseInt(idFuncionario.toString());
             FuncionarioDAO funcionarioDao = new FuncionarioDAOImpl();
             funcionarioDao.eliminarFuncionario(i);
+            
+            // Refresca los datos después de borrar un funcionario
+            refrescarDatos();
         } else {
             System.out.println("Error el indice es menor a 1");
         }
@@ -202,12 +205,36 @@ public class GestionPersonal extends javax.swing.JFrame {
         } else {
             System.out.println("Error el indice es menor a 1");
         }
+        
+                // Refresca los datos después de cerrar la ventana de actualización de datos
+        actualizarDatos.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent e) {
+                refrescarDatos();
+            }
+
+            private void refrescarDatos() {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+        });
     }//GEN-LAST:event_actualizarActionPerformed
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
         CrearDatos crearDatos = new CrearDatos();
         crearDatos.setVisible(true);
         crearDatos.setLocationRelativeTo(null);
+        
+                // Refresca los datos después de cerrar la ventana de creación de datos
+        crearDatos.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent e) {
+                refrescarDatos();
+            }
+
+            private void refrescarDatos() {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+        });
     }//GEN-LAST:event_agregarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -228,30 +255,22 @@ public class GestionPersonal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void cargarTabla() {
-        // TODO add your handling code here:
-        DefaultTableModel modelo = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                // Todas las celdas no son editables
-                return false;
-            }
-        };
+        DefaultTableModel modelo = (DefaultTableModel) tablaFuncionarios.getModel();
+        modelo.setRowCount(0); // Limpiar el modelo existente
 
-        // Asegúrate de que las columnas de tu modelo sean las correctas
-        modelo.setColumnIdentifiers(new Object[]{"Número de Identificación", "Tipo de Identificación", "Nombres", "Apellidos", "Estado Civil", "Sexo", "Dirección", "Teléfono", "Fecha de Nacimiento"});
-
-        Vector<Funcionario> vector = new Vector<>();
         FuncionarioDAO funcionarioDao = new FuncionarioDAOImpl();
 
-        tablaFuncionarios.setModel(modelo);
-        
         for (Funcionario funcionario : funcionarioDao.listarFuncionarios()) {
             modelo.addRow(new Object[]{funcionario.getNumeroIdentificacion(), funcionario.getTipoIdentificacion(), funcionario.getNombres(), funcionario.getApellidos(), funcionario.getEstadoCivil(), funcionario.getSexo(), funcionario.getDireccion(), funcionario.getTelefono(), funcionario.getFechaNacimiento()});
         }
+        };
 
-    }
-        public int getIdentificacion(int id){
+    public int getIdentificacion(int id){
         int identificacion = id; 
         return identificacion;
-        }
+    }
+
+    private void refrescarDatos() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
