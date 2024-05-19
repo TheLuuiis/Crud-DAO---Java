@@ -19,9 +19,9 @@ import java.util.List;
 public class FuncionarioDAOImpl implements FuncionarioDAO {
 
     // URL de conexión para PostgreSQL
-    private static final String URL = "jdbc:postgresql://localhost:5000/postgres";
+    private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
     private static final String USER = "postgres";
-    private static final String PASSWORD = "kevinm24";
+    private static final String PASSWORD = "root";
 
     // Sentencias SQL para las operaciones CRUD
     private static final String INSERT_FUNCIONARIO = "INSERT INTO funcionarios (FuncionarioID, TipoIdentificacion, Nombres, Apellidos, EstadoCivil, Sexo, Direccion, Telefono, FechaNacimiento) VALUES\n" +
